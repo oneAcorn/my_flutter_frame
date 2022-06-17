@@ -37,6 +37,8 @@ dependencies:
   # 本地存储库
   shared_preferences: ^2.0.8
   fluttertoast: ^8.0.9
+  # 首页底部页签
+  adaptive_navigation: ^0.0.7
 
 dev_dependencies:
   flutter_test:

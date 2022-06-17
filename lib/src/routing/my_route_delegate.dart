@@ -69,7 +69,7 @@ class MyRouteDelegate extends RouterDelegate<List<RouteSettings>>
         child = const SplashPage();
         break;
       case '/home':
-        child = const HomePage();
+        child = HomePage(routeSettings.arguments as Map<String, Object>);
         break;
       case '/login':
         child = const LoginPage();

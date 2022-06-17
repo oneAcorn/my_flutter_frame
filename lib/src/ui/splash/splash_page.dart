@@ -49,7 +49,7 @@ class _SplashState extends State<SplashPage> {
   void _jumpNext() async {
     String? userName = await CacheUtils.getString(CachesContants.userName);
     if (userName?.isNotEmpty == true) {
-      delegate.replace(name: "/home");
+      delegate.replace(name: "/home", arguments: {'index': 0});
     } else {
       delegate.replace(name: "/login");
     }
