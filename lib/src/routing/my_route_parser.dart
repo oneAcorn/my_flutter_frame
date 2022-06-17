@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_flutter_frame/src/routing/my_route_parser2.dart';
-import 'package:my_flutter_frame/src/routing/my_route_path.dart';
 import 'package:my_flutter_frame/src/utils/LogUtils.dart';
 
 class MyRouteParser extends RouteInformationParser<List<RouteSettings>> {

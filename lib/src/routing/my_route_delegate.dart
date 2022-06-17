@@ -22,7 +22,7 @@ class MyRouteDelegate extends RouterDelegate<List<RouteSettings>>
   }
 
   @override
-  GlobalKey<NavigatorState> get navigatorKey => GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   List<Page> get currentConfiguration => List.of(_pages);
@@ -44,6 +44,7 @@ class MyRouteDelegate extends RouterDelegate<List<RouteSettings>>
       notifyListeners();
       return Future.value(true);
     }
+    //没有可弹出页面,弹出是否退出app弹框.
     return _confirmExit();
   }
 
@@ -89,11 +90,14 @@ class MyRouteDelegate extends RouterDelegate<List<RouteSettings>>
   }
 
   bool canPop() {
+    LogUtils.log("canpop:${_pages.length}");
     return _pages.length > 1;
   }
 
   bool _onPopPage(Route route, dynamic result) {
-    if (!route.didPop(result)) return false;
+    bool didPop = route.didPop(result);
+    LogUtils.log("onPopPage $didPop,${canPop()}");
+    if (!didPop) return false;
 
     if (canPop()) {
       _pages.removeLast();
@@ -114,6 +118,7 @@ class MyRouteDelegate extends RouterDelegate<List<RouteSettings>>
   }
 
   Future<bool> _confirmExit() async {
+    LogUtils.log('???${navigatorKey.currentContext}');
     final result = await showDialog<bool>(
         context: navigatorKey.currentContext!,
         builder: (context) {

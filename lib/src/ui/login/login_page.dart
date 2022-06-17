@@ -79,7 +79,7 @@ class _LoginState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(5.0)),
                             side: BorderSide(
                                 color: Theme.of(context).primaryColor)),
-                        onPressed: () {},
+                        onPressed: _showDialog,
                         child: const Text(
                           '注册',
                           style: TextStyle(color: Colors.white),
@@ -128,5 +128,25 @@ class _LoginState extends State<LoginPage> {
     }
     CacheUtils.saveString(CachesContants.userName, userNameController.text);
     delegate.replace(name: '/home');
+  }
+
+  void _showDialog() async {
+    final result = await showDialog<bool>(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: const Text('确定要退出App吗?'),
+            actions: [
+              TextButton(
+                child: const Text('取消'),
+                onPressed: () => Navigator.pop(context, true),
+              ),
+              TextButton(
+                child: const Text('确定'),
+                onPressed: () => Navigator.pop(context, false),
+              ),
+            ],
+          );
+        });
   }
 }
